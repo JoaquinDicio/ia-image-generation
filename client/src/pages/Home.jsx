@@ -8,8 +8,8 @@ export default function Home() {
   useEffect(() => {
     fetch("http://localhost:8080/api/v1/post")
       .then((res) => res.json())
-      .then((data) => console.log(data));
-  });
+      .then((data) => setAllPosts(data.data));
+  }, []);
 
   const handleChange = (e) => {
     setSearchText(e.target.value);
@@ -43,10 +43,15 @@ export default function Home() {
             </h4>
           )}
           <div className="result-images row row-cols-1 row-cols-md-2 row-cols-lg-4">
-            <div className="col bg-dark p-1">a</div>
-            <div className="col bg-light p-1">a</div>
-            <div className="col bg-primary p-1">a</div>
-            <div className="col bg-success p-1">a</div>
+            {allPosts !== null
+              ? allPosts.map((post) => (
+                  <Card
+                    photo={post.photo}
+                    owner={post.name}
+                    prompt={post.prompt}
+                  />
+                ))
+              : "No posts to show"}
           </div>
         </div>
       )}

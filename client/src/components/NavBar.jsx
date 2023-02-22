@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 export default function NavBar() {
   return (
-    <div className="navbar py-3 px-5 shadow-sm w-100 d-flex justify-content-between">
+    <div className="navbar bg-white py-3 px-5 shadow-sm w-100 d-flex justify-content-between">
       <Link to="/">
         <img src="src\assets\logo.png" alt="logo" className="logo" />
       </Link>
