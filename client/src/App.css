@@ -1,0 +1,75 @@
+/* normalize css */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+main{
+    height: 100vh;
+    padding-top: 70px;
+}
+div.navbar{
+    position: fixed;
+    min-height: 70px;
+}
+img.logo{
+    width: 130px;
+}
+p.text{
+    font-weight: 500;
+    font-size: 1.05em;
+}
+p.text-share{
+    font-size: 1.05em;
+    color: #a7a7a7;
+}
+
+input.form-field-input{
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding: 6px 5px;
+    width: 100%;
+}
+button{
+    max-width: 150px;
+}
+div.img-container{
+    width: fit-content;
+    height: fit-content;
+    position: relative;
+}
+div.loader-container{
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+}
+img.img-created{
+    max-width: 400px;
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* loader css */
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: #0d6efd;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
