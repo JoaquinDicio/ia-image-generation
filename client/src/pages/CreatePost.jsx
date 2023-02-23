@@ -22,7 +22,9 @@ export default function CreatePost() {
       } catch (err) {
         console.log(err.data);
       } finally {
-        setImageLoading(false);
+        setTimeout(() => {
+          setImageLoading(false);
+        }, [5000]);
       }
     }
   };
@@ -35,23 +37,27 @@ export default function CreatePost() {
   };
 
   const postImage = async () => {
-    try {
-      setSharing(true);
-      const data = await fetch("http://localhost:8080/api/v1/post", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          photo: formData.photo,
-          prompt: formData.prompt,
-          name: formData.name,
-        }),
-      });
-      await data.json();
-      navigate("/");
-    } catch (err) {
-      console.log(err);
-    } finally {
-      setSharing(false);
+    if (formData.name && formData.prompt && formData.photo) {
+      try {
+        setSharing(true);
+        const data = await fetch("http://localhost:8080/api/v1/post", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            photo: formData.photo,
+            prompt: formData.prompt,
+            name: formData.name,
+          }),
+        });
+        await data.json();
+        navigate("/");
+      } catch (err) {
+        console.log(err);
+      } finally {
+        setSharing(false);
+      }
+    } else {
+      alert("Please complete all the fields");
     }
   };
 

@@ -10,7 +10,7 @@ export default function FormField({
 }) {
   return (
     <div className="form-field">
-      {label && <label>{label}</label>}
+      {label && <label className="d-block mb-1">{label}</label>}
       {isSurprise && <button className="btn btn-secondary">Surprise me</button>}
       <input
         name={name}

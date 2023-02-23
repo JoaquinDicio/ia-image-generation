@@ -5,6 +5,9 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
+.bold{
+    font-weight: bold;
+}
 main{
     height: 100vh;
     padding-top: 70px;
@@ -30,6 +33,7 @@ input.form-field-input{
     border: 1px solid grey;
     padding: 6px 5px;
     width: 100%;
+    max-width: 500px;
 }
 button{
     max-width: 150px;
@@ -52,7 +56,7 @@ div.image-home-container{
 }
 div.image-home{
     border-radius: 10px;
-    height: 390px;
+    height: 350px;
     margin: 3px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -63,7 +67,20 @@ img.img-created{
     width: 100%;
     border-radius: 5px;
 }
-
+div.user-icon{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background-color: #FFF;
+}
+p.user-name{
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+}
+div.card-label{
+    background-color: rgba(0, 0, 0, .8);
+}
 /* loader css */
 .loader {
     width: 48px;
@@ -84,3 +101,9 @@ img.img-created{
         transform: rotate(360deg);
     }
     } 
+
+@media(max-width:522px){
+    div.image-home{
+        height: 300px;
+    }
+}

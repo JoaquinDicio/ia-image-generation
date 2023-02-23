@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from "react";
-import { Loader, FormField, Card } from "../index.js";
+import { Loader, FormField } from "../index.js";
+import RenderCards from "../components/RenderCards.jsx";
 export default function Home() {
   const [loading, setLoading] = useState(false);
-  const [allPosts, setAllPosts] = useState(null);
+  const [allPosts, setAllPosts] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchTimeOut, setSearchTimeOut] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:8080/api/v1/post")
       .then((res) => res.json())
-      .then((data) => setAllPosts(data.data));
+      .then((data) => setAllPosts(data.data.reverse()));
   }, []);
 
   const handleChange = (e) => {
+    clearTimeout(searchTimeOut);
     setSearchText(e.target.value);
+
+    setSearchTimeOut(
+      setTimeout(() => {
+        const results = allPosts.filter((post) =>
+          post.prompt.toLowerCase().includes(searchText.toLocaleLowerCase())
+        );
+        setSearchResults(results);
+      }, 700)
+    );
   };
 
   return (
@@ -42,16 +55,12 @@ export default function Home() {
               Showing results for "{searchText}"
             </h4>
           )}
-          <div className="result-images row row-cols-1 row-cols-md-2 row-cols-lg-4">
-            {allPosts !== null
-              ? allPosts.map((post) => (
-                  <Card
-                    photo={post.photo}
-                    owner={post.name}
-                    prompt={post.prompt}
-                  />
-                ))
-              : "No posts to show"}
+          <div className="result-images row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+            {searchText == "" ? (
+              <RenderCards posts={allPosts} />
+            ) : (
+              <RenderCards posts={searchResults} />
+            )}
           </div>
         </div>
       )}
